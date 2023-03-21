@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap");
+:root {
+  /*Primary*/
+  --col-desaturated-dark-cyan: #5ba4a4;
+  /*Neutral*/
+  --col-light-grayish-cyan-background: hsl(180, 52%, 96%);
+  --col-light-grayis-cyan-filter-tablets: hsl(180, 31%, 95%);
+  --col-dark-grayish-cyan: hsl(180, 8%, 52%);
+  --col-very-dark-grayish-cyan: hsl(180, 14%, 20%);
+
+  font-size: 15px;
+  font-family: "League Spartan", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background-color: var(--col-light-grayish-cyan-background);
+}
+
+main {
+  margin-top: 7rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+header {
+  position: relative;
+}
+
+nav {
+  display: flex;
+  position: absolute;
+  padding: 1rem;
+  background-color: white;
+  margin: 1.5rem;
+  width: calc(100% - 3rem);
+  bottom: -90px;
+  min-height: 100px;
+  border-radius: 0.5rem;
+}
+
+.filter {
+  width: 85%;
+}
+
+.clear {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  font-weight: 800;
+  color: var(--col-dark-grayish-cyan);
+}
+
+.box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 0.5rem solid var(--col-desaturated-dark-cyan);
+  box-shadow: 0 10px 20px 0px var(--col-dark-grayish-cyan);
+}
+
+.features-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.features-wrapper .company {
+  color: var(--col-desaturated-dark-cyan);
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.features-wrapper .new-tag {
+  padding: 0.4rem 0.5rem;
+  background-color: var(--col-desaturated-dark-cyan);
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+.features-wrapper .featured-tag {
+  padding: 0.4rem 0.5rem;
+  background-color: black;
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.position {
+  font-size: 1rem;
+}
+
+.info-wrapper {
+  display: flex;
+  gap: 1rem;
+  color: var(--col-dark-grayish-cyan);
+}
+
+.languages-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.language-tag {
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 800;
+  color: var(--col-desaturated-dark-cyan);
+  background-color: var(--col-light-grayish-cyan-background);
+}
+
+.photo {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+}
