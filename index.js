@@ -23,9 +23,19 @@ function createComponent(result) {
     const article = document.createElement("article");
     article.classList.add("box");
     main.appendChild(article);
+    const box1 = document.createElement("div");
+    box1.classList.add("box1");
+    article.appendChild(box1);
+    const photo = document.createElement("img");
+    photo.classList.add("photo");
+    photo.src = item.logo;
+    box1.appendChild(photo);
+    const extraInfo = document.createElement("div");
+    extraInfo.classList.add("extra-info");
+    box1.appendChild(extraInfo);
     const featuresWrapper = document.createElement("div");
     featuresWrapper.classList.add("features-wrapper");
-    article.appendChild(featuresWrapper);
+    extraInfo.appendChild(featuresWrapper);
     const company = document.createElement("h1");
     company.innerText = item.company;
     company.classList.add("company");
@@ -49,10 +59,10 @@ function createComponent(result) {
     const position = document.createElement("h2");
     position.innerText = item.position;
     position.classList.add("position");
-    article.appendChild(position);
+    extraInfo.appendChild(position);
     const infoWrapper = document.createElement("div");
     infoWrapper.classList.add("info-wrapper");
-    article.appendChild(infoWrapper);
+    extraInfo.appendChild(infoWrapper);
     const posted = document.createElement("p");
     posted.innerText = item.postedAt;
     infoWrapper.appendChild(posted);
@@ -95,10 +105,6 @@ function createComponent(result) {
         languagesWrapper.appendChild(tools);
       });
     }
-    const photo = document.createElement("img");
-    photo.classList.add("photo");
-    photo.src = item.logo;
-    article.appendChild(photo);
   });
   //Add filter functionality
   filter();
@@ -139,6 +145,7 @@ function clearButton() {
   });
 }
 
+//Updating filter tags and items displayed
 function addOrRemoveElementsFilterUpdate() {
   const filterBox = document.querySelector(".filter");
   filterBox.addEventListener("DOMNodeInserted", async function () {
@@ -147,26 +154,24 @@ function addOrRemoveElementsFilterUpdate() {
     const data = await fetch("./data.json");
     const result = await data.json();
     const filteredResult = result.filter((item) => {
-      function checkLanguages() {
-        const lang = item.languages;
-        let count = 0;
-        lang.forEach((item) => {
-          if (filterTagsArray.includes(item)) {
-            count++;
-          }
-        });
-        if (count > 0) {
-          return true;
-        } else {
-          return false;
+      let counter = 0;
+      if (filterTagsArray.includes(item.role)) {
+        counter++;
+      }
+      if (filterTagsArray.includes(item.level)) {
+        counter++;
+      }
+      for (let i = 0; i < item.languages.length; i++) {
+        if (filterTagsArray.includes(item.languages[i])) {
+          counter++;
         }
       }
-      return (
-        filterTagsArray.includes(item.role) ||
-        filterTagsArray.includes(item.level) ||
-        checkLanguages() ||
-        filterTagsArray.includes(item.tools)
-      );
+      for (let j = 0; j < item.tools.length; j++) {
+        if (filterTagsArray.includes(item.tools[j])) {
+          counter++;
+        }
+      }
+      return counter === filterTagsArray.length;
     });
     createComponent(filteredResult);
   });
@@ -178,26 +183,24 @@ function addOrRemoveElementsFilterUpdate() {
     const result = await data.json();
     if (filterTagsArray.length > 0) {
       const filteredResult = result.filter((item) => {
-        function checkLanguages() {
-          const lang = item.languages;
-          let count = 0;
-          lang.forEach((item) => {
-            if (filterTagsArray.includes(item)) {
-              count++;
-            }
-          });
-          if (count > 0) {
-            return true;
-          } else {
-            return false;
+        let counter = 0;
+        if (filterTagsArray.includes(item.role)) {
+          counter++;
+        }
+        if (filterTagsArray.includes(item.level)) {
+          counter++;
+        }
+        for (let i = 0; i < item.languages.length; i++) {
+          if (filterTagsArray.includes(item.languages[i])) {
+            counter++;
           }
         }
-        return (
-          filterTagsArray.includes(item.role) ||
-          filterTagsArray.includes(item.level) ||
-          checkLanguages() ||
-          filterTagsArray.includes(item.tools)
-        );
+        for (let j = 0; j < item.tools.length; j++) {
+          if (filterTagsArray.includes(item.tools[j])) {
+            counter++;
+          }
+        }
+        return counter === filterTagsArray.length;
       });
       createComponent(filteredResult);
     } else {
